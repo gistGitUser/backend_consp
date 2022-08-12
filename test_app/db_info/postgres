@@ -1,0 +1,10 @@
+
+
+1) autoincrement
+   - u need set a bigserial type that means
+     big autoincrementing
+
+2) TIMESTAMPTZ is the same as TIMESTAMP WITH TIME ZONE
+
+3) Postgres has a now() function to get the current
+   time,
