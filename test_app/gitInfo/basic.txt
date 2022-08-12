@@ -4,3 +4,16 @@ git config --global user.email "MY_NAME@example.com"
 
 
 git config --list
+
+
+git add .
+git status
+git commit -m "init"
+
+git branch -M main
+git remote add origin git@github.com:gistGitUser/backend_consp.git
+
+//for remove
+git remote rm origin
+
+git push -u origin main

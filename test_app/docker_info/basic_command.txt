@@ -1,0 +1,46 @@
+
+//show containers
+docker ps
+
+//show images
+docker images
+
+//get image from docker hub
+docker pull postgres
+
+//get a specific version by tag
+docker pull postgres:12-alpine
+
+//--name - specify name of the container
+//-e -   set environment variable
+//-d  - run container in background
+//-p  - первый порт доступный в системе, второй порт - порт в докере
+docker run --name some-postgres -p 5000:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+
+//other way for start container
+https://hub.docker.com/_/postgres
+
+//connect to postgres
+//run command inside container
+sudo docker exec -it some-postgres psql -U root
+
+//logs
+docker logs some-postgres
+
+//migration
+ sudo docker cp ./test_app/dbdiagram/Untitled.sql  some-postgres:/migr.sql
+
+sudo docker exec -u postgres some-postgres psql postgres root -f migr.sql
+
+sudo docker stop some-postgres
+
+sudo docker rm some-postgres
+
+
+//получить инфу о таблице
+SELECT column_name,data_type,ordinal_position from information_schema.columns where table_name = 'account';
+
+./migrate create -ext sql -dir "/home/mos/Documents/code_learn/go/backend_consp/test_app/migration" -seq init_schema
+
+./migrate -path /home/mos/Documents/code_learn/go/backend_consp/test_app/migration -database "postgresql://root:mysecretpassword@192.168.88.187:5000/simple_bank?sslmode=disable" -verbose up
+
